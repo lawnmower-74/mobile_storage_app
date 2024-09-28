@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:go_router/go_router.dart';
-// import 'package:storage_app/src/routers/page.dart' as router;
+import 'package:go_router/go_router.dart';
+import 'package:storage_app/src/routers/page.dart' as router;
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -39,7 +39,7 @@ class _Body extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: FilledButton(
-            onPressed: () => {},
+            onPressed: () => context.go(router.Page.topPage.path),
             child: const Text('ログイン'),
           ),
         ),
