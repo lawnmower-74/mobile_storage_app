@@ -13,8 +13,15 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
   const _Body();
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +36,20 @@ class _Body extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         TextFormField(
-          obscureText: true,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
+          obscureText: _obscureText,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
             labelText: 'パスワード',
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            ),
           ),
         ),
         const SizedBox(height: 24),
@@ -42,11 +59,7 @@ class _Body extends StatelessWidget {
             onPressed: () => context.go(router.Page.topPage.path),
             child: const Text('ログイン'),
           ),
-        ),
-        TextButton(
-          onPressed: () => {},
-          child: const Text('パスワードを忘れた場合はこちら')
-        ),
+        )
       ]),
     );
   }
