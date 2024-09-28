@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:storage_app/src/widgets/bottom_nav_bar.dart';
+import 'package:storage_app/src/pages/profile_page.dart';
 
 class TopPage extends StatefulWidget {
   const TopPage({super.key});
@@ -9,13 +10,31 @@ class TopPage extends StatefulWidget {
 }
 
 class _TopPageState extends State<TopPage> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    const _Body(),
+    const Center(child: Text('Notifications Page')),
+    const Center(child: Text('Add Page')),
+    const Center(child: Text('Chat Page')),
+    const ProfilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: _Body(),
+    return Scaffold(
+      body: _pages[_currentIndex],
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(initialIndex: 0),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentIndex,
+        onItemSelected: _onItemTapped,
+      ),
     );
   }
 }

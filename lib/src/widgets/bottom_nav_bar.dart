@@ -1,31 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:storage_app/src/routers/page.dart' as router;
 
-class BottomNavBar extends StatefulWidget {
-  final int initialIndex;
+class BottomNavBar extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onItemSelected;
 
-  const BottomNavBar({super.key, this.initialIndex = 0});
-
-  @override
-  BottomNavBarState createState() => BottomNavBarState();
-}
-
-class BottomNavBarState extends State<BottomNavBar> {
-  late int _currentIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    _currentIndex = widget.initialIndex;
-  }
-
-  void _onItemTapped(int index, String routePath) {
-    setState(() {
-      _currentIndex = index;
-    });
-    context.go(routePath);
-  }
+  const BottomNavBar({
+    super.key,
+    required this.currentIndex,
+    required this.onItemSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +29,20 @@ class BottomNavBarState extends State<BottomNavBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildNavItem(Icons.home, 0, router.Page.topPage.path),
-          _buildNavItem(Icons.notifications, 1, router.Page.notificationsPage.path),
+          _buildNavItem(Icons.home, 0),
+          _buildNavItem(Icons.notifications, 1),
           _buildAddButton(),
-          _buildNavItem(Icons.chat_bubble_outline, 3, router.Page.topPage.path),
-          _buildNavItem(Icons.person_outline, 4, router.Page.notificationsPage.path),
+          _buildNavItem(Icons.chat_bubble_outline, 3),
+          _buildNavItem(Icons.person_outline, 4),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index, String routePath) {
-    final isSelected = _currentIndex == index;
+  Widget _buildNavItem(IconData icon, int index) {
+    final isSelected = currentIndex == index;
     return GestureDetector(
-      onTap: () => _onItemTapped(index, routePath),
+      onTap: () => onItemSelected(index),
       child: Icon(
         icon,
         color: isSelected ? Colors.white : Colors.grey,
@@ -70,7 +53,7 @@ class BottomNavBarState extends State<BottomNavBar> {
 
   Widget _buildAddButton() {
     return GestureDetector(
-      onTap: () => _onItemTapped(2, router.Page.notificationsPage.path),
+      onTap: () => onItemSelected(2),
       child: Container(
         width: 48,
         height: 48,
