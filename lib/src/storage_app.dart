@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:storage_app/src/routers/page.dart' as router;
 import 'package:storage_app/src/pages/login_page.dart';
 import 'package:storage_app/src/pages/top_page.dart';
+import 'package:storage_app/src/pages/notifications_page.dart';
 
 final _router = GoRouter(routes: [
   GoRoute(
@@ -18,6 +19,10 @@ final _router = GoRouter(routes: [
   GoRoute(
     path: router.Page.topPage.path,
     builder: (context, state) => const TopPage(),
+  ),
+  GoRoute(
+    path: router.Page.notificationsPage.path,
+    builder: (context, state) => const NotificationsPage(),
   ),
 ]);
 

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:storage_app/src/widgets/bottom_nav_bar.dart';
 
-class TopPage extends StatefulWidget {
-  const TopPage({super.key});
+class NotificationsPage extends StatefulWidget {
+  const NotificationsPage({super.key});
 
   @override
-  State<TopPage> createState() => _TopPageState();
+  State<NotificationsPage> createState() => _NotificationsPageState();
 }
 
-class _TopPageState extends State<TopPage> {
+class _NotificationsPageState extends State<NotificationsPage> {
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: _Body(),
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(initialIndex: 0),
+      bottomNavigationBar: BottomNavBar(initialIndex: 1),
     );
   }
 }
@@ -32,11 +32,6 @@ class _Body extends StatelessWidget {
         children: [
           CardButton(
             text: 'オーダー',
-            onPressed: () => {},
-          ),
-          const SizedBox(height: 4),
-          CardButton(
-            text: '設定', 
             onPressed: () => {},
           ),
         ],

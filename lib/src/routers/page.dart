@@ -1,6 +1,7 @@
 enum Page {
   loginPage(path: '/login'),
-  topPage(path: '/top');
+  topPage(path: '/top'),
+  notificationsPage(path: '/notification');
 
   const Page({required this.path});
 
