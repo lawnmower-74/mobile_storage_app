@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 // import 'package:go_router/go_router.dart';
 // import 'package:storage_app/src/routers/page.dart' as router;
+import 'package:storage_app/src/widgets/bottom_nav_bar.dart';
 
-class TopPage extends StatelessWidget {
+class TopPage extends StatefulWidget {
   const TopPage({super.key});
 
   @override
+  State<TopPage> createState() => _TopPageState();
+}
+
+class _TopPageState extends State<TopPage> {
+  int _currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: _Body(),
+    return Scaffold(
+      body: const _Body(),
+      extendBody: true,
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
     );
   }
 }
