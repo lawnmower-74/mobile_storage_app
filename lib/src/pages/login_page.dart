@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:go_router/go_router.dart';
-// import 'package:storage_app/src/routers/page.dart' as router;
+import 'package:go_router/go_router.dart';
+import 'package:storage_app/src/routers/page.dart' as router;
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -13,8 +13,15 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
   const _Body();
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +36,30 @@ class _Body extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         TextFormField(
-          obscureText: true,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
+          obscureText: _obscureText,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
             labelText: 'パスワード',
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            ),
           ),
         ),
         const SizedBox(height: 24),
         SizedBox(
           width: double.infinity,
           child: FilledButton(
-            onPressed: () => {},
+            onPressed: () => context.go(router.Page.topPage.path),
             child: const Text('ログイン'),
           ),
-        ),
-        TextButton(
-          onPressed: () => {},
-          child: const Text('パスワードを忘れた場合はこちら')
-        ),
+        )
       ]),
     );
   }
