@@ -40,7 +40,7 @@ class _Body extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       child: const Center(
-        child: Text('これは通知ページです。'),
+        child: Text('これはプロフィール用ページです。'),
       ),
     );
   }

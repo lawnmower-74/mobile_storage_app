@@ -30,9 +30,9 @@ class BottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildNavItem(Icons.home, 0),
-          _buildNavItem(Icons.notifications, 1),
+          _buildNavItem(Icons.search, 1),
           _buildAddButton(),
-          _buildNavItem(Icons.chat_bubble_outline, 3),
+          _buildNavItem(Icons.favorite, 3),
           _buildNavItem(Icons.person_outline, 4),
         ],
       ),

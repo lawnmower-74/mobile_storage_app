@@ -14,9 +14,9 @@ class _TopPageState extends State<TopPage> {
 
   final List<Widget> _pages = [
     const _Body(),
-    const Center(child: Text('Notifications Page')),
-    const Center(child: Text('Add Page')),
-    const Center(child: Text('Chat Page')),
+    const Center(child: Text('検索画面')),
+    const Center(child: Text('追加機能')),
+    const Center(child: Text('お気に入り画面')),
     const ProfilePage(),
   ];
 
